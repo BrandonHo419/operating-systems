@@ -9,10 +9,19 @@
 
 /* this function will be called by mergesort() and also by parallel_mergesort(). */
 void merge(int leftstart, int leftend, int rightstart, int rightend){
+
 }
 
 /* this function will be called by parallel_mergesort() as its base case. */
 void my_mergesort(int left, int right){
+	if(left>=right){
+		return; // base case
+	}
+
+	int mid = left + (right-left)/2;
+	my_mergesort(left, mid);
+	my_mergesort(mid+1, right);
+	// implement the merge logic tmr 
 }
 
 /* this function will be called by the testing program. */
