@@ -21,7 +21,9 @@ void my_mergesort(int left, int right){
 	int mid = left + (right-left)/2;
 	my_mergesort(left, mid);
 	my_mergesort(mid+1, right);
-	// implement the merge logic tmr 
+
+
+	merge(left, mid, mid+1, right);
 }
 
 /* this function will be called by the testing program. */
