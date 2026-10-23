@@ -25,6 +25,12 @@ void merge(int leftstart, int leftend, int rightstart, int rightend) {
     }
     k++;
   }
+  // prevent over copy oops
+  while (i <= leftend) {
+    B[k] = A[i];
+    i++;
+    k++;
+  }
 
   // copy right side elements
   while (j <= rightend) {
