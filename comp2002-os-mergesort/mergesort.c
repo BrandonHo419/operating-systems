@@ -83,4 +83,15 @@ void* parallel_mergesort(void* arg) {
 }
 
 /* we build the argument for the parallel_mergesort function. */
-struct argument* buildArgs(int left, int right, int level) { return NULL; }
+struct argument* buildArgs(int left, int right, int level) {
+  struct argument* args = malloc(sizeof(struct argument));
+  if (args == NULL) {
+    perror("malloc");
+    exit(1);
+  }
+  args->left = left;
+  args->right = right;
+  args->level = level;
+  return args;
+  return NULL;
+}
