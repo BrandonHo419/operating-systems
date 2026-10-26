@@ -2,50 +2,54 @@
  * This file implements parallel mergesort.
  */
 
-#include <stdio.h>
-#include <string.h> /* for memcpy */
-#include <stdlib.h> /* for malloc */
 #include "mergesort.h"
 
-/* this function will be called by mergesort() and also by parallel_mergesort(). */
-void merge(int leftstart, int leftend, int rightstart, int rightend){
-	int i = leftstart;
-	int j = rightstart;
-	int k = leftstart;
+#include <stdio.h>
+#include <stdlib.h> /* for malloc */
+#include <string.h> /* for memcpy */
 
-	//if both sections are already ordered
-	//dont merge
-	if (A[leftend] <= A[rightstart]) {
-        return;
-    }
-	//compare the elements from both subarrays 
-	//place the smaller element in temp array B
-	while (i <= leftend && j <= rightend){
-		if (A[i] <= A[j]) {
-			B[k++] = A[i++];
-		} else{
-			B[k++] = A[j++];
-		}
-	}
-	// copy any remaining elements from the left subarray
-	while (i <= leftend) {
-        B[k++] = A[i++];
-    }
-	// copy any remaining elements from the right subarray
-    while (j <= rightend) {
-        B[k++] = A[j++];
-    }
-	 // copy the merged elements back into the og array
-	memcpy(A + leftstart, B + leftstart,
-           (size_t)(rightend - leftstart + 1) * sizeof(*A));
+/* this function will be called by mergesort() and also by parallel_mergesort().
+ */
+void merge(int leftstart, int leftend, int rightstart, int rightend) {
+  int i = leftstart;
+  int j = rightstart;
+  int k = leftstart;
 
+  while (i <= leftend && j <= rightend) {
+    if (A[i] <= A[j]) {
+      B[k] = A[i];
+      i++;
+    } else {
+      B[k] = A[j];
+      j++;
+    }
+    k++;
+  }
+  // prevent over copy oops
+  while (i <= leftend) {
+    B[k] = A[i];
+    i++;
+    k++;
+  }
+
+  // copy right side elements
+  while (j <= rightend) {
+    B[k] = A[j];
+    j++;
+    k++;
+  }
+
+  // copy merged back into A (use memcpy to avoid deleting element)
+
+  memcpy(A + leftstart, B + leftstart,
+         (rightend - leftstart + 1) * sizeof(int));
 }
 
 /* this function will be called by parallel_mergesort() as its base case. */
-void my_mergesort(int left, int right){
-	if(left>=right){
-		return; // base case
-	}
+void my_mergesort(int left, int right) {
+  if (left >= right) {
+    return;  // base case
+  }
 
 	int mid = left + (right-left)/2;
 	my_mergesort(left, mid);
@@ -55,6 +59,11 @@ void my_mergesort(int left, int right){
 		merge(left, mid, mid+1, right);
 	}
 	
+  int mid = left + (right - left) / 2;
+  my_mergesort(left, mid);
+  my_mergesort(mid + 1, right);
+
+  merge(left, mid, mid + 1, right);
 }
 
 /* this function will be called by the testing program. */
@@ -151,7 +160,15 @@ void * parallel_mergesort(void *arg){
 }
 
 /* we build the argument for the parallel_mergesort function. */
-struct argument * buildArgs(int left, int right, int level){
-		return NULL;
+struct argument* buildArgs(int left, int right, int level) {
+  struct argument* args = malloc(sizeof(struct argument));
+  if (args == NULL) {
+    perror("malloc");
+    exit(1);
+  }
+  args->left = left;
+  args->right = right;
+  args->level = level;
+  return args;
+  return NULL;
 }
-
