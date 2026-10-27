@@ -24,6 +24,7 @@ test-mergesort.c -> Testing file used to test the final, completed implementatio
 mergesting.c -> Generated testing file, used when progressively implementing the mergesort functions.
 Makefile -> Contains the the instructions to compile and build the project.
 README -> Documentation covering the project.
+run_tests.sh -> Automatic testing script which tests 133 different cases.
 
 ## Building the project
 
@@ -38,9 +39,10 @@ This project is designed to compile and run in a Linux environment. The testing 
 **Compilation Steps:**
 1) Open Terminal and navigate to the directory containing make file (/operating-systems-1/comp2002-os-mergesort)
 2) Compile using the command "make"
+3) If the run_tests.sh script is to be ran. Ensure "chmod +x run_tests.sh" is executed prior
 
 **Post-Compilation:**
-1) To run the program: ./test-mergesort (SORT_AMOUNT, THREAD_MAXIMUM, SEED)
+1) To run the program: ./test-mergesort (SORT_AMOUNT, THREAD_MAXIMUM, SEED) OR ./run_tests.sh for automatic testing.
 2) To clean the testing files: "make clean"
 
 ## Features and usage
@@ -121,7 +123,8 @@ The output should remain identical regardless of the cutoff value.
 Performance can be evaluated by comparing execution times between the sequential implementation and the parallel implementation using larger input arrays.
 Different cutoff levels can be compared to assess whether the benefit of parallel execution outweighs the overhead of creating and synchronising threads.
 
-Testing results: (need to fill this in after)
+Testing results: All 133 tests passed. Testing comprised of 78 boundary tests, 40 random-seed tests and 15 stress tests.
+**One important limitation**: the test program checks whether the output is ordered, but that alone does not prove that every original element was preserved. For comprehensive correctness, an independent comparison against a trusted sorted copy would be stronger.
 
 
 ## Known Bugs
@@ -160,3 +163,5 @@ Adelaide University course materials were also used.
 
 ## AI Declaration
 AI was used to understand the concepts of race conditions, merge sort, recursive algorithms and just explaining differences from C++ to C.
+
+AI was also used to develop the run_tests.sh file to automatically test on a bunch of cases and have it save to a .csv file.
