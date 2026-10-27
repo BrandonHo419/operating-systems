@@ -64,10 +64,17 @@ void* parallel_mergesort(void* arg) {
   int left = args->left;
   int right = args->right;
   int level = args->level;
-  free(args);
+  int mid;
+  int status;
+
+  pthread_t left_thread;
+  pthread_t right_thread;
+
+  struct argument* left_args;
+  struct argument* right_args;
 
   if (left >= right) {
-    return;  // base case
+    return NULL;  // base case
   }
 
   // fall back to sequential merge sort if no more thread levels
