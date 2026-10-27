@@ -153,3 +153,9 @@ If you used any sources outside of the textbook, you should list them here.
 If you looked something up on stackoverflow.com or you use help from AI, and 
 fail to cite it in this section, it will be considered plagiarism and dealt 
 with accordingly. So be safe CITE!
+
+The C-Standard Library was used: Reference material for memory management and operations such as malloc(), free(), and memcpy(). 
+Adelaide University course materials were also used.
+
+## AI Declaration
+AI was used to understand the concepts of race conditions, merge sort, recursive algorithms and just explaining differences from C++ to C.
