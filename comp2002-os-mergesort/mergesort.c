@@ -59,7 +59,6 @@ void my_mergesort(int left, int right) {
     merge(left, mid, mid + 1, right);
   }
 
-  int mid = left + (right - left) / 2;
   my_mergesort(left, mid);
   my_mergesort(mid + 1, right);
 
