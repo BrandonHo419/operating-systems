@@ -125,17 +125,27 @@ Testing results: (need to fill this in after)
 
 ## Known Bugs
 
-List known bugs that you weren't able to fix (or ran out of time to fix).
+As of writing this there have not been any known bugs at the moment.
+
+During development the program did initially fail sorting tests due to issues in the implementation. These included uninitialised variables within the parallel sorting function and also duplicate recursive calls. I suspect this was due to merging conflicts without properly clearing. 
+
+These bugs were quickly resolved and squashed during a team meeting where we conducted a code review.
 
 ## Reflection and Self Assessment
 
-Discuss the issues you encountered during development and testing. What
-problems did you have? What did you have to research and learn on your own?
-What kinds of errors did you get? How did you fix them?
+One of the main challenges during development was understanding how merge sort operates recursively and how the algorithm can be adapted for parallel execution.
 
-What parts of the project did you find challenging? Is there anything that
-finally "clicked" for you in the process of working on this project? How well
-did the development and testing process go for you?
+Initially, understanding how the left and right sections were merged was a struggle, (mostly it was visualising), particularly when managing array indices. The merge() function required careful handling of the left, right, and temporary array positions to ensure that elements were copied correctly without being skipped or overwritten.
+
+Another challenge was implementing multithreading using pthreads. We needed to understand how to pass arguments to threads, how recursion works when separate threads are created and the importance of syncronisation to avoid any race conditions.
+
+During testing, the program initially reported that sorting had failed. Reviewing the code revealed that some variables in parallel_mergesort() had been declared without being initialised from the argument structure. This led to errors as the values would be completely random per run. This demonstrated the importance of initialising variables before they are used.
+
+We also identified duplicated recursive calls in my_mergesort(), which resulted in unnecessary sorting operations. Removing the duplicated calls simplified the implementation and reduced unnecessary system work.
+
+An important concept we developed a better understanding of was the relationship between concurrency and synchronisation. Although separate sections of an array can be sorted concurrently, the merging process must wait until both sections have been fully sorted. The use of pthread_join() ensures this condition is met and avoids the race conditions which lead to inaccurate and random results.
+
+Overall, the assignment provided practical experience with recursive algorithms, memory management, POSIX threads, and debugging C programs. It also reinforced the importance of testing the sequential implementation before introducing parallel execution.
 
 ## Sources Used
 
