@@ -1,21 +1,29 @@
-README.template
+Operating Systems Assignment2 README
 
 ## Project Number/Title 
 
-* Authors: Your Name, and your group members’ names
-* Group name: Your Group Name
+* Authors: Brandon Ho, Jeremy Nguyen, Marko Bogsav
+* Group name: brandon
 
 ## Overview
 
-Concisely explain what the program does. If this exceeds a couple of
-sentences, you're going too far. Generally, you should be pulling this
-right from the project specification. We don't want you to just cut and
-paste, but paraphrase what is stated in the project specification.
+This project implements a parallel merge sort algorithm using pthreads. 
+The program works by dividing an array into smaller sections that can be sorted concurrently and then merges the sorted sections into a final array.
+The buildArgs has the option to cutoff level controls for thread creation, allowing the performance of sequential and parallel sorting to be compared. 
+
 
 ## Manifest
 
 A listing of source files and other non-generated files, and a brief
 (one-line) explanation of the purpose of each file.
+
+The project contains the following source files:
+mergesort.c -> Implements sequential and parallel merge sort algorithms. Includes merge function and thread management.
+mergesort.h -> Contains declarations, shared variables and structures required by the merge sort implementation.
+test-mergesort.c -> Testing file used to test the final, completed implementations.
+mergesting.c -> Generated testing file, used when progressively implementing the mergesort functions.
+Makefile -> Contains the the instructions to compile and build the project.
+README -> Documentation covering the project.
 
 ## Building the project
 
