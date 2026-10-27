@@ -58,11 +58,6 @@ void my_mergesort(int left, int right) {
   if (A[mid] > A[mid + 1]) {
     merge(left, mid, mid + 1, right);
   }
-
-  my_mergesort(left, mid);
-  my_mergesort(mid + 1, right);
-
-  merge(left, mid, mid + 1, right);
 }
 
 /* this function will be called by the testing program. */
@@ -85,6 +80,11 @@ void* parallel_mergesort(void* arg) {
   if (current == NULL) {
     return NULL;
   }
+
+  // added to avoid getting random vals from incomplete declarations.
+  left = current->left;
+  right = current->right;
+  level = current->level;
 
   // base case, no sorting is required for one element.
   if (left >= right) {
@@ -161,5 +161,4 @@ struct argument* buildArgs(int left, int right, int level) {
   args->right = right;
   args->level = level;
   return args;
-  return NULL;
 }
