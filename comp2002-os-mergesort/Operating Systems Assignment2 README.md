@@ -39,7 +39,7 @@ This project is designed to compile and run in a Linux environment. The testing 
 **Compilation Steps:**
 1) Open Terminal and navigate to the directory containing make file (/operating-systems-1/comp2002-os-mergesort)
 2) Compile using the command "make"
-3) If the run_tests.sh script is to be ran. Ensure "chmod +x run_tests.sh" is executed prior
+3) If the run_tests.sh script is to be ran. Ensure "chmod +x run_tests.sh" and "make clean" is executed prior
 
 **Post-Compilation:**
 1) To run the program: ./test-mergesort (SORT_AMOUNT, THREAD_MAXIMUM, SEED) OR ./run_tests.sh for automatic testing.
