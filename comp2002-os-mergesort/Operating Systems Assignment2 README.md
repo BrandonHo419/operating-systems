@@ -161,6 +161,11 @@ with accordingly. So be safe CITE!
 The C-Standard Library was used: Reference material for memory management and operations such as malloc(), free(), and memcpy(). 
 Adelaide University course materials were also used.
 
+https://www.sjsu.edu/people/robert.chun/courses/cs159/s3/T.pdf - Parallel MergeSort
+https://medium.com/@angadbir0987/understanding-parallel-merge-sort-efficiency-and-performance-148107c32ad5 - Comparing Parallel and Sequential
+https://en.cppreference.com/c/memory - C-standard library
+
+
 ## AI Declaration
 AI was used to understand the concepts of race conditions, merge sort, recursive algorithms and just explaining differences from C++ to C.
 
