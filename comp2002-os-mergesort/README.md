@@ -111,6 +111,7 @@ The implementation should also be tested with:
 
 These tests check whether the base case is handled correctly and whether the algorithm avoids invalid memory access.
 
+
 3. **Sequential and Parallel Testing**
 
 The program should be tested with multiple cutoff levels.
@@ -125,6 +126,8 @@ Different cutoff levels can be compared to assess whether the benefit of paralle
 
 Testing results: All 133 tests passed. Testing comprised of 78 boundary tests, 40 random-seed tests and 15 stress tests.
 **One important limitation**: the test program checks whether the output is ordered, but that alone does not prove that every original element was preserved. For comprehensive correctness, an independent comparison against a trusted sorted copy would be stronger.
+
+Furthermore, upon local testing there was over a 2X speedup from serial merge sort to the parallel mergesort when the levels were 2 and above (did not testing above 4). The best result was yielded at 3 threads with a 4.72x improvement in speed.
 
 
 ## Known Bugs
